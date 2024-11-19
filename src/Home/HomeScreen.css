@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header .add-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.section {
+  flex: 1;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section h3 {
+  margin-bottom: 10px;
+}
+
+.section .items-container {
+  display: flex; /* Display items in a row */
+  flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+    margin-right: 10px; /* Add some space between items */
+}
+
+.item img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  gap: 10px; /* Add a gap between items */
+}
+
+.menu-icon {
+  color: #333;
+  font-size: 24px; /* Adjust icon size as needed */
+  cursor: pointer;
+  flex: 1; /* Allow icons to grow and fill the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
