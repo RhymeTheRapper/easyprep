@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 288 288" style="enable-background:new 0 0 288 288;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#2B2B2B;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<path class="st0" d="M217.05,123.11c-2.88-40.37-36.59-72.24-77.75-72.24c-43.05,0-77.95,34.85-77.95,77.83
+			c0,42.98,34.89,77.83,77.95,77.83c6.88,0,13.56-0.89,19.91-2.57"/>
+		<ellipse class="st0" cx="139.3" cy="128.7" rx="11" ry="10.99"/>
+		<g>
+			<g>
+				<line class="st0" x1="70.62" y1="128.7" x2="79.77" y2="128.7"/>
+			</g>
+			<g>
+				<line class="st0" x1="139.3" y1="197.28" x2="139.3" y2="188.15"/>
+			</g>
+			<g>
+				<line class="st0" x1="139.3" y1="61.11" x2="139.3" y2="70.24"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<line class="st0" x1="90.39" y1="177.34" x2="96.85" y2="170.88"/>
+			</g>
+			<g>
+				<line class="st0" x1="187.51" y1="177.34" x2="181.05" y2="170.88"/>
+			</g>
+			<g>
+				<line class="st0" x1="187.51" y1="80.36" x2="181.05" y2="86.81"/>
+			</g>
+			<g>
+				<line class="st0" x1="91.09" y1="81.05" x2="97.55" y2="87.51"/>
+			</g>
+		</g>
+		<line class="st0" x1="108.61" y1="158.9" x2="131.16" y2="136.1"/>
+		<line class="st0" x1="139.3" y1="117.71" x2="139.3" y2="92.39"/>
+	</g>
+	<g>
+		<g>
+			<path class="st0" d="M163.78,131.01v27.88c0,3.85,1.94,7.45,5.16,9.56l7.29,4.8l-0.99,44.85c-0.12,4.81,3.75,8.77,8.56,8.77l0,0
+				c4.81,0,8.68-3.96,8.56-8.77l-0.99-44.85l7.29-4.8c3.22-2.12,5.16-5.71,5.16-9.56v-27.88"/>
+			<g>
+				<line class="st0" x1="190.36" y1="155.7" x2="190.36" y2="131.01"/>
+				<line class="st0" x1="177.25" y1="131.01" x2="177.25" y2="155.7"/>
+			</g>
+		</g>
+		<path class="st0" d="M218.22,143.06L210,188.5l10.53,2.11l-1.34,27.35c-0.23,4.64,3.48,8.53,8.13,8.53l0,0
+			c4.5,0,8.14-3.64,8.14-8.14V170.6v-39.59h-2.8C225.57,131.01,219.49,136.09,218.22,143.06z"/>
+	</g>
+</g>
+</svg>
