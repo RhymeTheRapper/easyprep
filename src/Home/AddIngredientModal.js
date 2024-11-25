@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AddIngredientModal.css';
 
 function AddIngredientModal({ onAddIngredient }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +15,11 @@ function AddIngredientModal({ onAddIngredient }) {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+        setNewIngredient({
+            ingredientName: '',
+            expiryDate: '',
+            quantity: '',
+        });
     };
 
     const handleChange = (event) => {
@@ -30,15 +36,50 @@ function AddIngredientModal({ onAddIngredient }) {
 
     return (
         <div>
-            <button onClick={handleOpenModal}>Add Ingredient</button>
+            <button className="add-ingredient-button" onClick={handleOpenModal}>
+                <span>+</span>
+            </button>
+            
             {isModalOpen && (
-                <div className="modal-container">
+                <div className="modal-overlay">
                     <div className="modal-content">
-                        <input type="text" name="ingredientName" placeholder="Ingredient Name" onChange={handleChange} />
-                        <input type="date" name="expiryDate" onChange={handleChange} />
-                        <input type="number" name="quantity" placeholder="Quantity" onChange={handleChange} />
-                        <button onClick={handleCloseModal}>Cancel</button>
-                        <button onClick={handleSubmit}>Add</button>
+                        <h2>Add New Ingredient</h2>
+                        <div className="input-group">
+                            <label>Name</label>
+                            <input 
+                                type="text" 
+                                name="ingredientName" 
+                                placeholder="Enter ingredient name" 
+                                onChange={handleChange}
+                                value={newIngredient.ingredientName}
+                            />
+                        </div>
+                        
+                        <div className="input-group">
+                            <label>Expiry Date</label>
+                            <input 
+                                type="date" 
+                                name="expiryDate" 
+                                onChange={handleChange}
+                                value={newIngredient.expiryDate}
+                            />
+                        </div>
+                        
+                        <div className="input-group">
+                            <label>Quantity</label>
+                            <input 
+                                type="number" 
+                                name="quantity" 
+                                placeholder="Enter quantity" 
+                                onChange={handleChange}
+                                value={newIngredient.quantity}
+                            />
+                        </div>
+                        
+                        <div className="modal-buttons">
+                            <button className="cancel-button" onClick={handleCloseModal}>Cancel</button>
+                            <button className="submit-button" onClick={handleSubmit}>Add Ingredient</button>
+                        </div>
                     </div>
                 </div>
             )}
