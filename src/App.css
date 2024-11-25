@@ -18,6 +18,8 @@
   border-radius: 50px;
   box-shadow: 
     0 0 0 11px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
 .reset-data-button {

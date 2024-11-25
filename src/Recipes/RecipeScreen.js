@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './RecipeScreen.css';
 import carbonara from '../images/carbonara.png';
 import stirfry from '../images/stirfry.png';
-import Footer from '../components/Footer';
 import { useLocation } from 'react-router-dom';
 
 // Mock database of recipes
@@ -82,7 +81,6 @@ function RecipeScreen() {
                     ))}
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }
