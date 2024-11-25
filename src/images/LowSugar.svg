@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 288 288" style="enable-background:new 0 0 288 288;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#2B2B2B;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<circle class="st0" cx="142.75" cy="144.56" r="93"/>
+		<line class="st0" x1="92.9" y1="194.81" x2="77.96" y2="209.87"/>
+		<line class="st0" x1="207.54" y1="79.25" x2="180.76" y2="106.24"/>
+	</g>
+	<g>
+		<polygon class="st0" points="112.74,93.27 112.74,127.92 142.75,145.25 172.75,127.92 172.75,93.27 142.75,75.95 		"/>
+		<polyline class="st0" points="142.5,145.2 142.5,179.85 172.51,197.17 202.52,179.85 202.52,145.2 172.51,127.88 		"/>
+		<polyline class="st0" points="112.98,127.88 82.98,145.2 82.98,179.85 112.98,197.17 142.99,179.85 		"/>
+		<g>
+			<polyline class="st0" points="112.74,93.58 142.75,110.9 172.75,93.58 			"/>
+			<line class="st0" x1="142.75" y1="110.9" x2="142.75" y2="145.25"/>
+		</g>
+		<g>
+			<polyline class="st0" points="82.98,145.51 112.98,162.83 142.99,145.51 			"/>
+			<line class="st0" x1="112.98" y1="162.83" x2="112.98" y2="197.17"/>
+		</g>
+		<g>
+			<polyline class="st0" points="142.5,145.51 172.51,162.83 202.52,145.51 			"/>
+			<line class="st0" x1="172.51" y1="162.83" x2="172.51" y2="197.17"/>
+		</g>
+	</g>
+</g>
+</svg>
