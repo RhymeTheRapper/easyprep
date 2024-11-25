@@ -1,30 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import IngredientCard from './IngredientCard';
 import AddIngredientModal from './AddIngredientModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Footer from '../components/Footer';
 import './HomeScreen.css';
-
-// Create a context for the images
-const images = require.context('../images', false, /\.(png|jpe?g|svg)$/);
+import { useNavigate } from 'react-router-dom';
+import { useDatabase } from '../DatabaseContext';
 
 function HomeScreen() {
-    const [ingredients, setIngredients] = useState([
-        { category: 'Dairy', name: 'Cheese', image: 'cheese.svg', expiryDate: '2024-12-01' },
-        { category: 'Produce', name: 'Apple', image: 'apple.svg', expiryDate: '2024-12-05' },
-        { category: 'Produce', name: 'carrot', image: 'carrot.svg', expiryDate: '2024-12-10'},
-        { category: 'Dairy', name: 'Milk', image: 'milk.svg', expiryDate: '2024-12-15'},
-        // ... other ingredients
-    ]);
+    const { ingredients, selectedIngredients } = useDatabase();
+    const navigate = useNavigate();
 
-    const handleAddIngredient = (newIngredient) => {
-        setIngredients([...ingredients, newIngredient]);
+    const handleFilterClick = () => {
+        navigate('/recipes', { state: { filterIngredients: selectedIngredients } });
     };
 
     return (
         <div className="home-screen">
             <header className="header">
                 <h1>My Fridge</h1>
-                <AddIngredientModal onAddIngredient={handleAddIngredient} />
+                <AddIngredientModal />
             </header>
             <div className="content">
                 {ingredients.reduce((acc, ingredient) => {
@@ -39,30 +33,24 @@ function HomeScreen() {
                     <div className="section" key={index}>
                         <h3>{category.category}</h3>
                         <div className="items-container">
-                            {category.items.map((item, itemIndex) => (
-                                <div className="item" key={itemIndex}>
-                                    <img src={images(`./${item.image}`)} alt={item.name} />
-                                    <p>{item.name}</p>
-                                </div>
+                            {category.items.map((item) => (
+                                <IngredientCard 
+                                    key={item.id} 
+                                    ingredient={item}
+                                />
                             ))}
                         </div>
                     </div>
                 ))}
             </div>
-            <footer className="footer">
-                <div className="menu-item">
-                    <div className="icon recipe-icon"></div>
-                    <span>Recipes</span>
-                </div>
-                <div className="menu-item">
-                    <div className="icon home-icon"></div>
-                    <span>Home</span>
-                </div>
-                <div className="menu-item">
-                    <div className="icon profile-icon"></div>
-                    <span>Profile</span>
-                </div>
-            </footer>
+            {selectedIngredients.length > 0 && (
+                <button
+                    className="filter-button"
+                    onClick={handleFilterClick}
+                >
+                    Find Recipes
+                </button>
+            )}
         </div>
     );
 }

@@ -1,20 +1,43 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeScreen from './Home/HomeScreen';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faBook, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-library.add(faHome,
-  faBook, faUser); // Add your desired icons here
+import RecipeScreen from './Recipes/RecipeScreen';
+import { DatabaseProvider, useDatabase } from './DatabaseContext';
+import './App.css';
+import Footer from './components/Footer';
 function App() {
   return (
-    <div className="App" style={{ width: '100%', height: '100vh' }}>
-      <div className="phone-frame" style={{ paddingTop: '75px' }}>
-        <div className="app-container">
-          <HomeScreen />
+    <DatabaseProvider>
+      <Router>
+        <div className="App">
+          <ResetDataButton />
+          <div className="phone-frame">
+              <Routes>
+                <Route path="/" element={<HomeScreen />} />
+                <Route path="/recipes" element={<RecipeScreen />} />
+              </Routes>
+              <Footer />
+          </div>
         </div>
-      </div>
-    </div>
+      </Router>
+    </DatabaseProvider>
+  );
+}
+
+function ResetDataButton() {
+  const { resetToInitialState } = useDatabase();
+
+  return (
+    <button 
+      className="reset-data-button"
+      onClick={() => {
+        if (window.confirm('Are you sure you want to reset all data to initial state?')) {
+          resetToInitialState();
+          window.location.reload();
+        }
+      }}
+    >
+      Reset to Initial State
+    </button>
   );
 }
 
