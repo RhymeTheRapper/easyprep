@@ -8,14 +8,13 @@ library.add(faHome,
   faBook, faUser); // Add your desired icons here
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        {/* <Route path="/recipes"
-          element={<RecipeBrowserScreen />} /> */}
-        {/* <Route path="/profile" element={<ProfileScreen />} /> */}
-      </Routes>
-    </Router>
+    <div className="App" style={{ width: '100%', height: '100vh' }}>
+      <div className="phone-frame" style={{ paddingTop: '75px' }}>
+        <div className="app-container">
+          <HomeScreen />
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -9,10 +9,10 @@ const images = require.context('../images', false, /\.(png|jpe?g|svg)$/);
 
 function HomeScreen() {
     const [ingredients, setIngredients] = useState([
-        { category: 'Dairy', name: 'Cheese', image: 'cheese.svg' },
-        { category: 'Produce', name: 'Apple', image: 'apple.svg' },
-        { category: 'Produce', name: 'carrot', image: 'carrot.svg' },
-        { category: 'Dairy', name: 'Milk', image: 'milk.svg' },
+        { category: 'Dairy', name: 'Cheese', image: 'cheese.svg', expiryDate: '2024-12-01' },
+        { category: 'Produce', name: 'Apple', image: 'apple.svg', expiryDate: '2024-12-05' },
+        { category: 'Produce', name: 'carrot', image: 'carrot.svg', expiryDate: '2024-12-10'},
+        { category: 'Dairy', name: 'Milk', image: 'milk.svg', expiryDate: '2024-12-15'},
         // ... other ingredients
     ]);
 
@@ -50,9 +50,18 @@ function HomeScreen() {
                 ))}
             </div>
             <footer className="footer">
-                <FontAwesomeIcon icon="fa-home" className="menu-icon" />
-                <FontAwesomeIcon icon="fa-book" className="menu-icon" />
-                <FontAwesomeIcon icon="fa-user" className="menu-icon" />
+                <div className="menu-item">
+                    <div className="icon recipe-icon"></div>
+                    <span>Recipes</span>
+                </div>
+                <div className="menu-item">
+                    <div className="icon home-icon"></div>
+                    <span>Home</span>
+                </div>
+                <div className="menu-item">
+                    <div className="icon profile-icon"></div>
+                    <span>Profile</span>
+                </div>
             </footer>
         </div>
     );

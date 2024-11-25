@@ -1,5 +1,14 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #f0f0f0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .App-logo {
@@ -35,4 +44,42 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Phone frame */
+.phone-frame {
+  background-color: #111;
+  border-radius: 50px;
+  padding: 15px;
+  border: 2px solid #333;
+  box-shadow: 
+    0 0 0 11px #1f1f1f,
+    0 0 0 13px #191919,
+    0 0 0 20px #111,
+    0 0 50px rgba(0, 0, 0, 0.3); 
+}
+
+/* Notch */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 30px;
+  background-color: #111;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  z-index: 2;
+}
+
+/* App container inside phone frame */
+.app-container {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
 }
