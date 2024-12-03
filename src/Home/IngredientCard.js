@@ -39,9 +39,10 @@ function IngredientCard({ ingredient }) {
 
     const handleUpdateIngredient = (updatedIngredient) => {
         updateIngredient(ingredient.id, {
-            ...updatedIngredient,
-            id: ingredient.id,
-            image: ingredient.image
+            name: updatedIngredient.ingredientName,
+            category: updatedIngredient.category,
+            expiryDate: updatedIngredient.expiryDate,
+            image: updatedIngredient.image,
         });
         setShowEditModal(false);
     };

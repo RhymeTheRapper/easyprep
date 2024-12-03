@@ -19,11 +19,19 @@ function HomeScreen() {
         setShowAddModal(true);
     };
 
-    const handleAddIngredient = (newIngredient) => {
-        addIngredient({
-            ...newIngredient,
-            image: `${newIngredient.name.toLowerCase().replace(/\s+/g, '')}.svg`,
-        });
+    const handleAddIngredient = (ingredientData) => {
+        const capitalizedName = ingredientData.ingredientName.charAt(0).toUpperCase() + 
+                              ingredientData.ingredientName.slice(1);
+        
+        const newIngredient = {
+            id: Date.now(),
+            name: capitalizedName,
+            category: ingredientData.category,
+            expiryDate: ingredientData.expiryDate,
+            image: ingredientData.image
+        };
+
+        addIngredient(newIngredient);
         setShowAddModal(false);
     };
 

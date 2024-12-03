@@ -1,31 +1,43 @@
+@import url("satoshi.css");
+
 body {
   margin: 0;
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi-Regular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'ss01' on, 'ss02' on, 'ss03' on;
+  font-feature-settings: "ss01" on, "ss02" on, "ss03" on;
 }
 
 * {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi-Regular";
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Satoshi', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Satoshi-Bold';
   font-weight: 700;
 }
 
-button, input, select, textarea {
-  font-family: 'Satoshi', sans-serif;
+button,
+input,
+select,
+textarea {
+  font-family: 'Satoshi-Medium';
   font-weight: 500;
 }
 
-p, span, div {
-  font-family: 'Satoshi', sans-serif;
+p,
+span,
+div {
+  font-family: 'Satoshi-Regular';
   font-weight: 400;
 }

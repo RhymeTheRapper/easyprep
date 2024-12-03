@@ -13,6 +13,7 @@ import burger from '../images/burger.png';
 import padthai from '../images/padthai.png';
 import chickensoup from '../images/chickensoup.png';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDatabase } from '../DatabaseContext';
 
 // Mock database of recipes
 const recipeDatabase = [
@@ -21,103 +22,150 @@ const recipeDatabase = [
         name: "Spaghetti Carbonara",
         ingredients: ["pasta", "eggs", "bacon", "parmesan", "black pepper"],
         image: carbonara,
-        cookTime: "20 mins"
+        cookTime: "20 mins",
+        dietary: ["HighProtein", "IntermediateFasting"],
+        allergens: ["GlutenFree", "LactoseFree"]
     },
     {
         id: 2,
         name: "Chicken Stir Fry",
         ingredients: ["chicken", "broccoli", "carrots", "soy sauce", "rice"],
         image: stirfry,
-        cookTime: "25 mins"
+        cookTime: "25 mins",
+        dietary: ["HighProtein", "LowCalorie", "LowSugar", "IntermediateFasting"],
+        allergens: ["GlutenFree"]
     },
     {
         id: 3,
         name: "Greek Salad",
         ingredients: ["cucumber", "tomatoes", "olives", "feta", "red onion", "olive oil"],
         image: greeksalad,
-        cookTime: "10 mins"
+        cookTime: "10 mins",
+        dietary: ["LowCalorie", "LowSugar", "Vegetarian", "Keto", "RawFood", "IntermediateFasting"],
+        allergens: ["LactoseFree"]
     },
     {
         id: 4,
         name: "Beef Tacos",
         ingredients: ["beef", "tortillas", "tomatoes", "lime", "cheese", "guacamole", "cilantro", "onion"],
         image: tacos,
-        cookTime: "30 mins"
+        cookTime: "30 mins",
+        dietary: ["HighProtein", "IntermediateFasting"],
+        allergens: ["GlutenFree", "LactoseFree"]
     },
     {
         id: 5,
         name: "Vegetable Curry",
         ingredients: ["chickpeas", "cauliflower", "carrots", "coconut milk", "curry powder", "rice"],
         image: curry,
-        cookTime: "35 mins"
+        cookTime: "35 mins",
+        dietary: ["Vegetarian", "LowCalorie", "LowSugar", "IntermediateFasting"],
+        allergens: []
     },
     {
         id: 6,
         name: "Mushroom Risotto",
         ingredients: ["arborio rice", "mushrooms", "onion", "white wine", "parmesan", "butter"],
         image: risotto,
-        cookTime: "40 mins"
+        cookTime: "40 mins",
+        dietary: ["Vegetarian", "IntermediateFasting"],
+        allergens: ["LactoseFree"]
     },
     {
         id: 7,
         name: "Fish and Chips",
         ingredients: ["cod", "potatoes", "flour", "beer", "tartar sauce"],
         image: fishandchips,
-        cookTime: "45 mins"
+        cookTime: "45 mins",
+        dietary: ["HighProtein", "Pescatarian", "IntermediateFasting"],
+        allergens: ["GlutenFree", "FishFree"]
     },
     {
         id: 8,
         name: "Caesar Salad",
         ingredients: ["romaine lettuce", "croutons", "parmesan", "chicken", "caesar dressing"],
         image: caesarsalad,
-        cookTime: "15 mins"
+        cookTime: "15 mins",
+        dietary: ["HighProtein", "LowCalorie", "LowSugar", "IntermediateFasting"],
+        allergens: ["GlutenFree", "LactoseFree"]
     },
     {
         id: 9,
         name: "Margherita Pizza",
         ingredients: ["pizza dough", "tomatoes", "mozzarella", "basil", "olive oil"],
         image: pizza,
-        cookTime: "25 mins"
+        cookTime: "25 mins",
+        dietary: ["Vegetarian", "IntermediateFasting"],
+        allergens: ["GlutenFree", "LactoseFree"]
     },
     {
         id: 10,
         name: "Beef Burger",
         ingredients: ["ground beef", "burger buns", "lettuce", "tomatoes", "cheese", "onion"],
         image: burger,
-        cookTime: "20 mins"
+        cookTime: "20 mins",
+        dietary: ["HighProtein", "IntermediateFasting"],
+        allergens: ["GlutenFree", "LactoseFree"]
     },
     {
         id: 11,
         name: "Pad Thai",
         ingredients: ["rice noodles", "shrimp", "tofu", "peanuts", "bean sprouts", "eggs"],
         image: padthai,
-        cookTime: "30 mins"
+        cookTime: "30 mins",
+        dietary: ["HighProtein", "Pescatarian", "IntermediateFasting"],
+        allergens: ["ShellfishFree"]
     },
     {
         id: 12,
         name: "Chicken Soup",
         ingredients: ["chicken", "carrots", "celery", "onion", "noodles", "chicken broth"],
         image: chickensoup,
-        cookTime: "45 mins"
+        cookTime: "45 mins",
+        dietary: ["HighProtein", "LowCalorie", "LowSugar", "IntermediateFasting"],
+        allergens: ["GlutenFree"]
     }
 ];
 
 function RecipeScreen() {
     const location = useLocation();
     const navigate = useNavigate();
+    const { userProfile } = useDatabase();
     const [filterIngredients, setFilterIngredients] = useState(
         location.state?.filterIngredients || []
     );
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredRecipes, setFilteredRecipes] = useState(() => {
+        let results = recipeDatabase;
+
+        // Apply dietary preferences filter
+        if (userProfile.preferences?.dietary?.length > 0) {
+            results = results.filter(recipe =>
+                userProfile.preferences.dietary.some(pref => 
+                    recipe.dietary?.includes(pref)
+                )
+            );
+        }
+
+        // Filter out recipes that contain allergens
+        if (userProfile.preferences?.allergies?.length > 0) {
+            results = results.filter(recipe =>
+                !userProfile.preferences.allergies.some(allergy =>
+                    recipe.allergens?.includes(allergy)
+                )
+            );
+        }
+
+        // Apply ingredient filters if any
         if (filterIngredients.length > 0) {
-            return recipeDatabase.filter(recipe =>
+            results = results.filter(recipe =>
                 filterIngredients.every(filterIng =>
                     recipe.ingredients.includes(filterIng.name.toLowerCase())
                 )
             );
         }
-        return recipeDatabase;
+
+        return results;
     });
 
     const removeFilter = (ingredientToRemove) => {
@@ -133,6 +181,26 @@ function RecipeScreen() {
 
         // Reapply filters
         let results = recipeDatabase;
+
+        // Apply dietary preferences filter
+        if (userProfile.preferences?.dietary?.length > 0) {
+            results = results.filter(recipe =>
+                userProfile.preferences.dietary.some(pref => 
+                    recipe.dietary?.includes(pref)
+                )
+            );
+        }
+
+        // Filter out recipes that contain allergens
+        if (userProfile.preferences?.allergies?.length > 0) {
+            results = results.filter(recipe =>
+                !userProfile.preferences.allergies.some(allergy =>
+                    recipe.allergens?.includes(allergy)
+                )
+            );
+        }
+
+        // Apply ingredient filters if any
         if (updatedFilters.length > 0) {
             results = results.filter(recipe =>
                 updatedFilters.every(filterIng =>
@@ -156,7 +224,25 @@ function RecipeScreen() {
         
         let results = recipeDatabase;
         
-        // First apply the filter from selected ingredients
+        // Apply dietary preferences
+        if (userProfile.preferences?.dietary?.length > 0) {
+            results = results.filter(recipe =>
+                userProfile.preferences.dietary.some(pref => 
+                    recipe.dietary?.includes(pref)
+                )
+            );
+        }
+
+        // Filter out allergens
+        if (userProfile.preferences?.allergies?.length > 0) {
+            results = results.filter(recipe =>
+                !userProfile.preferences.allergies.some(allergy =>
+                    recipe.allergens?.includes(allergy)
+                )
+            );
+        }
+
+        // Apply ingredient filters
         if (filterIngredients.length > 0) {
             results = results.filter(recipe =>
                 filterIngredients.every(filterIng =>
@@ -165,7 +251,7 @@ function RecipeScreen() {
             );
         }
         
-        // Then apply the search term filter to both recipe names and ingredients
+        // Apply search term
         if (term !== '') {
             const searchLower = term.toLowerCase();
             results = results.filter(recipe =>
