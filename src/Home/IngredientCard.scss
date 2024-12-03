@@ -1,0 +1,91 @@
+.ingredient-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+
+  .ingredient-actions {
+    z-index: 1000;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 18px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.add {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    &.edit {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    &.delete {
+      background-color: #f44336;
+      color: white;
+    }
+  }
+
+  .expiry-warning {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    &.warning {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    &.expired {
+      background-color: #f44336;
+      color: white;
+    }
+  }
+
+  .image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import IngredientCard from './IngredientCard';
 import AddIngredientModal from './AddIngredientModal';
 import Footer from '../components/Footer';
-import './HomeScreen.css';
+import './HomeScreen.scss';
 import { useNavigate } from 'react-router-dom';
 import { useDatabase } from '../DatabaseContext';
 
 function HomeScreen() {
-    const { ingredients, selectedIngredients } = useDatabase();
+    const { ingredients, selectedIngredients, addIngredient } = useDatabase();
     const navigate = useNavigate();
+    const [showAddModal, setShowAddModal] = useState(false);
 
     const handleFilterClick = () => {
         navigate('/recipes', { state: { filterIngredients: selectedIngredients } });
     };
 
+    const handleAddClick = () => {
+        setShowAddModal(true);
+    };
+
+    const handleAddIngredient = (newIngredient) => {
+        addIngredient({
+            ...newIngredient,
+            image: `${newIngredient.name.toLowerCase().replace(/\s+/g, '')}.svg`,
+        });
+        setShowAddModal(false);
+    };
+
+    useEffect(() => {
+        const container = document.querySelector('.items-container');
+        
+        const updateScrollBar = () => {
+            const scrollPercentage = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+            container.style.setProperty('--scroll-percentage', `${scrollPercentage}%`);
+        };
+
+        container.addEventListener('scroll', updateScrollBar);
+        // Initial update
+        updateScrollBar();
+
+        return () => container.removeEventListener('scroll', updateScrollBar);
+    }, []);
+
     return (
         <div className="home-screen">
             <header className="header">
                 <h1>My Fridge</h1>
-                <AddIngredientModal />
+                <button onClick={handleAddClick} className="add-button"/>
             </header>
             <div className="content">
                 {ingredients.reduce((acc, ingredient) => {
@@ -43,12 +71,21 @@ function HomeScreen() {
                     </div>
                 ))}
             </div>
+
+            {showAddModal && (
+                <AddIngredientModal 
+                    onClose={() => setShowAddModal(false)}
+                    onSave={handleAddIngredient}
+                    isEdit={false}
+                />
+            )}
+
             {selectedIngredients.length > 0 && (
                 <button
                     className="filter-button"
                     onClick={handleFilterClick}
                 >
-                    Find Recipes
+                    Filter Recipes
                 </button>
             )}
         </div>
