@@ -6,6 +6,7 @@ import './IngredientCard.scss';
 function IngredientCard({ ingredient }) {
     const [showActions, setShowActions] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const { deleteIngredient, updateIngredient, toggleSelectedIngredient, selectedIngredients } = useDatabase();
     const images = require.context('../images/ingredients', false, /\.(png|jpe?g|svg)$/);
 
@@ -27,7 +28,7 @@ function IngredientCard({ ingredient }) {
 
     const handleDelete = (e) => {
         e.stopPropagation();
-        deleteIngredient(ingredient.id);
+        setShowDeleteModal(true);
         setShowActions(false);
     };
 
@@ -45,6 +46,11 @@ function IngredientCard({ ingredient }) {
             image: updatedIngredient.image,
         });
         setShowEditModal(false);
+    };
+
+    const confirmDelete = () => {
+        deleteIngredient(ingredient.id);
+        setShowDeleteModal(false);
     };
 
     const checkExpiration = () => {
@@ -109,6 +115,29 @@ function IngredientCard({ ingredient }) {
                     initialValues={ingredient}
                     isEdit={true}
                 />
+            )}
+
+            {showDeleteModal && (
+                <div className="modal-overlay">
+                    <div className="delete-modal">
+                        <h2>Delete Ingredient</h2>
+                        <p>Are you sure you want to delete {ingredient.name}?</p>
+                        <div className="modal-actions">
+                            <button 
+                                onClick={() => setShowDeleteModal(false)}
+                                className="cancel-btn"
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                onClick={confirmDelete}
+                                className="delete-btn"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </>
     );
