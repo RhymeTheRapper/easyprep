@@ -95,7 +95,12 @@ function RecipeScreen() {
                     <div className="active-filters">
                         {filterIngredients.map((ing) => (
                             <div key={ing.id} className="filter-tag">
-                                <button onClick={() => removeFilter(ing)}>×</button>
+                                <button 
+                                    className="remove-filter"
+                                    onClick={() => removeFilter(ing)}
+                                >
+                                    ×
+                                </button>
                                 <span>{ing.name}</span>
                             </div>
                         ))}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDatabase } from '../DatabaseContext';
 import { useNavigate } from 'react-router-dom';
 import './SignUpSignIn.scss';
-import Logo from '../images/logo.png'; // Assuming the same logo as in your landing page
+import Logo from '../images/logo.png';
 
 function SignUpSignIn() {
     const navigate = useNavigate();
