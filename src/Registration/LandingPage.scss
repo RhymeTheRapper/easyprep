@@ -1,0 +1,62 @@
+.landing-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .top-section {
+        flex: 2;
+        background: url('../images/kitchen-bg.png') no-repeat center center;
+        background-size: cover;
+    }
+
+    .bottom-section {
+        flex: 1;
+        background-color: #ffffff;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        margin-top: -50px; /* Overlap the top-section */
+
+        /* Create an upward curve */
+        border-top-left-radius: 50% 10%;
+        border-top-right-radius: 50% 10%;
+
+        .content {
+            max-width: 500px;
+
+            .logo {
+                width: 280px;
+                height: auto;
+            }
+
+            p {
+                font-size: 1.3rem;
+                color: #6a6a6a;
+                margin: 5px 0; /* Adjust spacing between tagline and other elements */
+                line-height: 1.5;
+            }
+
+            .get-started-btn {
+                padding: 14px 28px; /* Slightly larger button */
+                font-size: 1.1rem;
+                font-weight: bold;
+                background-color: #4caf50;
+                color: #ffffff;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 20px; /* Add spacing between the button and tagline */
+
+                &:hover {
+                    background-color: #45a049;
+                    transform: scale(1.05);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+    }
+}

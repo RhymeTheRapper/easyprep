@@ -99,9 +99,11 @@ body {
   }
 }
 
+
+
 .filter-button {
   position: fixed;
-  bottom: 220px;
+  bottom: 100px;
   left: 50%;
   justify-content: center;
   width: 170px;
@@ -128,5 +130,45 @@ body {
   &:active {
     transform: translateY(0);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.filter-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+
+  input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      box-sizing: border-box;
+  }
+
+  .filter-buttons {
+      display: flex;
+      gap: 10px;
+
+      .filter-btn {
+          padding: 10px 20px;
+          border-radius: 20px;
+          border: none;
+          background-color: #f0f0f0;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &.active {
+              background-color: #4CAF50;
+              color: white;
+          }
+
+          &:hover {
+              background-color: #ddd;
+          }
+      }
   }
 }

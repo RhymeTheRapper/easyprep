@@ -1,0 +1,116 @@
+.recipe-details {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+
+    max-height: 100vh;
+    overflow-y: auto;
+
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 15px; 
+        margin-bottom: 20px;
+
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #4caf50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+
+            &:hover {
+                background-color: #e8f5e9;
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .recipe-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center image and cook time */
+        gap: 1px;
+        text-align: center;
+
+        .recipe-image {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cook-time {
+            font-size: 16px;
+            color: #555;
+        }
+    }
+
+    .recipe-section {
+        margin-top: 5px;
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .ingredients-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .ingredient-tag {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-size: 14px;
+            color: white;
+
+            &.available {
+                background-color: #4caf50;
+            }
+
+            &.expiring-soon {
+                background-color: #ffc107;
+            }
+
+            &.expired {
+                background-color: #f44336;
+            }
+
+            &.unavailable {
+                background-color: #9e9e9e;
+            }
+        }
+
+        .steps-list {
+            margin: 0;
+            padding: 0 20px;
+            list-style-position: inside;
+            font-size: 16px;
+
+            li {
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
