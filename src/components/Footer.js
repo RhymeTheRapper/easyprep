@@ -15,8 +15,8 @@ function Footer() {
                 <div className="icon recipe-icon"></div>
             </div>
             <div
-                className={`menu-item ${location.pathname === '/' ? 'active' : ''}`}
-                onClick={() => navigate('/')}
+                className={`menu-item ${location.pathname === '/home' ? 'active' : ''}`}
+                onClick={() => navigate('/home')}
             >
                 <div className="icon home-icon"></div>
             </div>
